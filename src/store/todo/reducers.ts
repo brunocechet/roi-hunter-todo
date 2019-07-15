@@ -1,13 +1,16 @@
 import { TODOS_FETCH_SUCCESS, TODO_CREATE, TODO_UPDATE, TODO_DELETE, TODOS_FETCH_ERROR } from "./constants";
-import { TodosDict } from "./types";
+import { TodosDictState } from "./types";
 import { TodosActions } from "./actions";
 
-export type TodosDictState = {
-  byId: TodosDict,
-  allIds: string[]
+const initialState: TodosDictState = {
+  byId: {},
+  allIds: []
 }
 
-export const todosDictReducer = (state: TodosDictState, action: TodosActions): TodosDictState => {
+export const todosDictReducer = (
+  state = initialState, 
+  action: TodosActions
+): TodosDictState => {
   switch (action.type) {
     case TODOS_FETCH_SUCCESS:
       return {
@@ -15,10 +18,7 @@ export const todosDictReducer = (state: TodosDictState, action: TodosActions): T
         allIds: Object.keys(action.todos)
       }
     case TODOS_FETCH_ERROR:
-      return {
-        byId: {},
-        allIds: []
-      }
+      return initialState
     case TODO_CREATE:
       return {
         byId: {

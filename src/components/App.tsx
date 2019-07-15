@@ -1,5 +1,9 @@
 import React from 'react';
-import './App.css';
+// import { TodosDictState } from '../../store/todo/types'
+
+// interface AppProps {
+//   todo: TodosDictState
+// }
 
 const App: React.FC = () => {
   return (
